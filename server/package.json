@@ -1,0 +1,19 @@
+{
+  "name": "s3-react-server",
+  "version": "1.0.0",
+  "description": "tiit college aws training final project.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "server": "node app.js"
+  },
+  "author": "Kousik Bhowmik, Nilkantha Basuri, Sayan Dhar, Tushar Singha",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.946.0",
+    "@aws-sdk/lib-dynamodb": "^3.946.0",
+    "@vendia/serverless-express": "^4.12.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}
