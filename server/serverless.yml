@@ -1,0 +1,30 @@
+service: notice-board-api
+
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  stage: prod
+  httpApi:
+    cors: true
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
+
+package:
+  patterns:
+    - 'handler.mjs'
+    - 'app.mjs'
+    - 'src/**'
+    - 'package.json'
+    - 'package-lock.json'
+    - '!node_modules/aws-sdk/**'
+    - '!.env'
+    - '!aws.txt'
+
+plugins: []
