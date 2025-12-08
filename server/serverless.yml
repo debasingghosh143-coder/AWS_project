@@ -1,30 +1,38 @@
-service: notice-board-api
+name: Deploy Serverless Backend
 
-frameworkVersion: "4"
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "server/**"
 
-provider:
-  name: aws
-  runtime: nodejs20.x
-  region: ap-south-1
-  stage: prod
-  httpApi:
-    cors: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-functions:
-  api:
-    handler: handler.handler
-    events:
-      - httpApi: '*'
+    defaults:
+      run:
+        working-directory: ./server
 
-package:
-  patterns:
-    - 'handler.mjs'
-    - 'app.mjs'
-    - 'src/**'
-    - 'package.json'
-    - 'package-lock.json'
-    - '!node_modules/aws-sdk/**'
-    - '!.env'
-    - '!aws.txt'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-plugins: []
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Serverless Framework v3 (no login required)
+        run: npm install -g serverless@3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to AWS
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-south-1
+        run: serverless deploy --stage prod --verbose
