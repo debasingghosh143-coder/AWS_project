@@ -1,9 +1,35 @@
-import React from 'react'
-
+import React, { useContext } from "react";
+import AppContext from "../context/appContext.mjs";
+import Loading from "../components/Loading.jsx";
+import { Link } from "react-router-dom";
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  // @ts-ignore
+  const { notices, isLoading } = useContext(AppContext);
+
+  if (isLoading) <Loading />;
+
+  return notices.length < 1 ? (
+    <div>Notice not published yet!</div>
+  ) : (
+    <div>
+      <h1>All Notices</h1>
+      <div>
+        {
+          // @ts-ignore
+          notices.map((value, index) => (
+            <div key={index}>
+              <p>{value.title}</p>
+              <p>10/12/2025</p>
+              <p>10:10 AM</p>
+              <Link to={`/notice/${value.noticeId}`}>read</Link>
+              {/* <p>{value.date}</p> */}
+              {/* <p>{value.time}</p> */}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+};
 
 export default Home;

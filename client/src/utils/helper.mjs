@@ -1,10 +1,25 @@
+import axios from "axios";
+import { data } from "react-router-dom";
+import { toast } from "react-toastify";
+
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
-export const dateTimeFormat = (dateStr) => {
-  const dateObj = new Date(dateStr);
+export const fetchNotices = async () => {
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/get-all`);
 
-  const date = dateObj.toLocaleDateString("en-IN");
-  const time = dateObj.toLocaleTimeString("en-IN");
+    console.log(Date.now());
 
-  return { date, time };
+    // @ts-ignore
+    if (!data.success) {
+      toast("Error getting data");
+      return [];
+    } else {
+      return data.data;
+    }
+  } catch (error) {
+    // @ts-ignore
+    console.log(`ERROR: ${error.message}`);
+    return [];
+  }
 };
