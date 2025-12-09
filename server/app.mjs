@@ -13,5 +13,4 @@ app.use("/api/hello", (_, res) => {
   });
 });
 
-
 export default app;
