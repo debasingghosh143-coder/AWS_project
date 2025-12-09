@@ -75,13 +75,23 @@ export const getNotices = async (req, res) => {
       });
     }
 
-    const data = result.map((obj) => ({
-      noticeId: obj.id.S,
-      title: obj.heading.S,
-      text: obj.content.S,
-      author: obj.author.S,
-      published: obj.createdAt.S,
-    }));
+    // @ts-ignore
+    const data = result.map((obj) => {
+      // @ts-ignore
+      const dateObj = new Date(obj.createdAt.S);
+
+      const time = dateObj.toLocaleTimeString("en-IN");
+      const date = dateObj.toLocaleDateString("en-IN");
+
+      return {
+        noticeId: obj.id.S,
+        title: obj.heading.S,
+        text: obj.content.S,
+        author: obj.author.S,
+        date: date, 
+        time: time,
+      };
+    });
 
     return res.status(200).json({
       success: true,
