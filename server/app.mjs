@@ -13,8 +13,4 @@ app.use("/api/hello", (_, res) => {
   });
 });
 
-app.listen(8000, () => {
-  console.log("app is running");
-});
-
 export default app;
