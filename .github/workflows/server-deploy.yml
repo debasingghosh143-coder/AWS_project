@@ -34,5 +34,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ap-south-1
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_DYNAMODB_URL: ${{ secrets.AWS_DYNAMODB_URL}}
+          TABLE_NAME: ${{ secrets.TABLE_NAME}}
         run: serverless deploy --stage prod --verbose

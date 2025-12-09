@@ -4,7 +4,7 @@ import {
   AWS_ACCESS_KEY_ID,
   AWS_REGION,
   AWS_SECRET_ACCESS_KEY,
-} from "../utils/constants.mjs";
+} from "./utils.mjs";
 
 // @ts-ignore
 const client = new DynamoDBClient({

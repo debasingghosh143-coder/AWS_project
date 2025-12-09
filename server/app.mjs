@@ -1,5 +1,5 @@
 import express, { json } from "express";
-import router from "./src/routes/noticeRoute.mjs";
+import router from "./src/noticeRoute.mjs";
 
 const app = express();
 
@@ -9,8 +9,12 @@ app.use("/api/notices", router);
 app.use("/api/hello", (_, res) => {
   res.status(200).json({
     success: true,
-    message: "Hello from the AWS Lamda 🥳",
+    message: "Lamda is running!",
   });
+});
+
+app.listen(8000, () => {
+  console.log("app is running");
 });
 
 export default app;
