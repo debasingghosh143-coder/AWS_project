@@ -26,9 +26,10 @@ export const createNotice = async (req, res) => {
       .status(201)
       .json({ success: true, message: "Notice published!" });
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: "Internal server error" });
+      .json({ success: false, message: "Internal server error", error });
   }
 };
 
@@ -55,9 +56,10 @@ export const deleteNotice = async (req, res) => {
 
     return res.status(200).json({ success: true, message: "Notice deleted!" });
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: "Internal server error" });
+      .json({ success: false, message: "Internal server error", error });
   }
 };
 
@@ -87,8 +89,9 @@ export const getNotices = async (req, res) => {
       data,
     });
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: "Internal server error" });
+      .json({ success: false, message: "Internal server error", error });
   }
 };
