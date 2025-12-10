@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getAllItems, insertItem, deleteItemById } from "./noticeService.mjs";
+import { TABLE_NAME } from "./utils.mjs";
 
 // @ts-ignore
 export const createNotice = async (req, res) => {
@@ -20,7 +21,7 @@ export const createNotice = async (req, res) => {
       createdAt: new Date().toString(),
     };
 
-    await insertItem(item);
+    await insertItem(item, TABLE_NAME);
 
     return res
       .status(201)
@@ -46,7 +47,7 @@ export const deleteNotice = async (req, res) => {
   console.log(noticeId);
 
   try {
-    const result = await deleteItemById(noticeId);
+    const result = await deleteItemById(noticeId, TABLE_NAME);
 
     if (!result) {
       return res
@@ -66,7 +67,7 @@ export const deleteNotice = async (req, res) => {
 // @ts-ignore
 export const getNotices = async (req, res) => {
   try {
-    const result = await getAllItems();
+    const result = await getAllItems(TABLE_NAME);
     if (result.length < 1) {
       return res.status(200).json({
         success: true,
@@ -88,7 +89,7 @@ export const getNotices = async (req, res) => {
         title: obj.heading.S,
         text: obj.content.S,
         author: obj.author.S,
-        date: date, 
+        date: date,
         time: time,
       };
     });

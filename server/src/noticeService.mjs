@@ -1,12 +1,11 @@
 import { ScanCommand } from "@aws-sdk/client-dynamodb";
 import dynamoDB from "./dynamoDB.mjs";
-import { TABLE_NAME } from "./utils.mjs";
 import { DeleteCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 
 // @ts-ignore
-export const insertItem = async (item) => {
+export const insertItem = async (item, tableName) => {
   const params = {
-    TableName: TABLE_NAME,
+    TableName: tableName,
     Item: item,
   };
   await dynamoDB.send(new PutCommand(params));
@@ -14,9 +13,9 @@ export const insertItem = async (item) => {
 };
 
 // @ts-ignore
-export const deleteItemById = async (id) => {
+export const deleteItemById = async (id, tableName) => {
   const params = {
-    TableName: TABLE_NAME,
+    TableName: tableName,
     Key: { id },
   };
 
@@ -25,9 +24,10 @@ export const deleteItemById = async (id) => {
   return true;
 };
 
-export const getAllItems = async () => {
+// @ts-ignore
+export const getAllItems = async (tableName) => {
   const params = {
-    TableName: TABLE_NAME,
+    TableName: tableName,
   };
 
   const result = await dynamoDB.send(new ScanCommand(params));
