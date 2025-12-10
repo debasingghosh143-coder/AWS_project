@@ -19,11 +19,9 @@ const Home = () => {
           notices.map((value, index) => (
             <div key={index}>
               <p>{value.title}</p>
-              <p>10/12/2025</p>
-              <p>10:10 AM</p>
               <Link to={`/notice/${value.noticeId}`}>read</Link>
-              {/* <p>{value.date}</p> */}
-              {/* <p>{value.time}</p> */}
+              <p>{value.date}</p>
+              <p>{value.time}</p>
             </div>
           ))
         }

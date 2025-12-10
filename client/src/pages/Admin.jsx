@@ -71,7 +71,10 @@ const Admin = () => {
     <div>
       <h1>Admin page</h1>
 
-      <form onSubmit={handleFormsSubmit}>
+      <form
+        style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+        onSubmit={handleFormsSubmit}
+      >
         <h2>Notice form</h2>
 
         <input
@@ -101,8 +104,11 @@ const Admin = () => {
           placeholder="Author name"
         />
 
-        <button type="submit">Publish</button>
+        <button style={{ cursor: "pointer" }} type="submit">
+          Publish
+        </button>
         <button
+          style={{ cursor: "pointer" }}
           type="reset"
           onClick={() => {
             setTitle("");
@@ -125,8 +131,8 @@ const Admin = () => {
               notices.map((value, index) => (
                 <div key={index}>
                   <p>{value.title}</p>
-                  <p>10/12/2025</p>
-                  <p>10:10 AM</p>
+                  <p>{value.date}</p>
+                  <p>{value.time}</p>
                   <Link to={`/notice/${value.noticeId}`}>read</Link>
                   {location.pathname === "/admin" && (
                     <p
