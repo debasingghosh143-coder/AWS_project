@@ -43,4 +43,4 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync dist s3://your-s3-bucket-name/ --delete
+          aws s3 sync dist s3://aws-react-s3-bucket/ --delete
