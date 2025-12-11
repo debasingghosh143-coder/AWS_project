@@ -68,7 +68,7 @@ export const deleteNotice = async (req, res) => {
 export const getNotices = async (req, res) => {
   try {
     const result = await getAllItems(TABLE_NAME);
-    if (result.length < 1) {
+    if (result.length === 0) {
       return res.status(200).json({
         success: true,
         message: "Notice not published yet!",
@@ -76,13 +76,18 @@ export const getNotices = async (req, res) => {
       });
     }
 
+    const sortedResult = [...result].sort(
+      // @ts-ignore
+      (a, b) => new Date(b.createdAt.S) - new Date(a.createdAt.S)
+    );
+
     // @ts-ignore
-    const data = result.map((obj) => {
+    const data = sortedResult.map((obj) => {
       // @ts-ignore
       const dateObj = new Date(obj.createdAt.S);
 
-      const time = dateObj.toLocaleTimeString("en-IN");
-      const date = dateObj.toLocaleDateString("en-IN");
+      const time = dateObj.toLocaleTimeString();
+      const date = dateObj.toLocaleDateString();
 
       return {
         noticeId: obj.id.S,

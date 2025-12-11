@@ -5,7 +5,8 @@
   "main": "app.mjs",
   "type": "module",
   "scripts": {
-    "server": "node app.mjs"
+    "server": "node app.mjs",
+    "dev": "node temp.mjs"
   },
   "author": "Kousik Bhowmik, Nilkantha Basuri, Sayan Dhar, Tushar Singha",
   "license": "ISC",
