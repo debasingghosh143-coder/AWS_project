@@ -86,8 +86,13 @@ export const getNotices = async (req, res) => {
       // @ts-ignore
       const dateObj = new Date(obj.createdAt.S);
 
-      const time = dateObj.toLocaleTimeString();
-      const date = dateObj.toLocaleDateString();
+      const time = dateObj.toLocaleTimeString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      });
+
+      const date = dateObj.toLocaleDateString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      });
 
       return {
         noticeId: obj.id.S,
