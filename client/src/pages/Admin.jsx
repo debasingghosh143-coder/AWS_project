@@ -3,12 +3,14 @@ import AppContext from "../context/appContext.mjs";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { SERVER_URL } from "../utils/helper.mjs";
+import { fetchNotices, SERVER_URL } from "../utils/helper.mjs";
 import { Link, useLocation } from "react-router-dom";
+// @ts-ignore
 import "../styles/admin.css"
 const Admin = () => {
   // @ts-ignore
-  const { notices, isLoading, setNotices } = useContext(AppContext);
+  const { notices, isLoading, setNotices, setIsLoading } =
+    useContext(AppContext);
   const location = useLocation();
 
   const [title, setTitle] = useState("");
@@ -41,10 +43,22 @@ const Admin = () => {
       if (data.success) {
         toast(data.message);
       }
+
+     setIsLoading(true);
+     const result = await fetchNotices();
+
+     if (result.length !== 0) {
+       setNotices(result);
+     }
+
+     
     } catch (error) {
       // @ts-ignore
       console.log(error.message);
       toast("Unable to publish!");
+    }finally{
+      setIsLoading(false);
+
     }
 
     setTitle("");
@@ -59,6 +73,7 @@ const Admin = () => {
 
       if (data.success) {
         toast(data.message);
+        // @ts-ignore
         setNotices(prev =>  prev.filter(notice => notice.noticeId !== id)); 
       }
     } catch (error) {
@@ -149,12 +164,12 @@ const Admin = () => {
                    </div>
                   <Link className="read_btn" to={`/notice/${value.noticeId}`}>Read</Link><br />
                   {location.pathname === "/admin" && (
-                    <Link className="del_btn"
+                    <p className="del_btn"
                       style={{ cursor: "pointer" }}
                       onClick={() => deleteNotice(value.noticeId) }
                     >
                       Delete
-                    </Link>
+                    </p>
                   )}
                 </div>
               ))
