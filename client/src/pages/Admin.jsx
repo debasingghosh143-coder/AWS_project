@@ -6,7 +6,7 @@ import axios from "axios";
 import { fetchNotices, SERVER_URL } from "../utils/helper.mjs";
 import { Link, useLocation } from "react-router-dom";
 // @ts-ignore
-import "../styles/admin.css"
+import "../styles/admin.css";
 const Admin = () => {
   // @ts-ignore
   const { notices, isLoading, setNotices, setIsLoading } =
@@ -21,7 +21,6 @@ const Admin = () => {
   const handleFormsSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("btn clicked");
     let flag = 0;
     if (title.length < 5) {
       toast("Enter a valid title!");
@@ -44,21 +43,18 @@ const Admin = () => {
         toast(data.message);
       }
 
-     setIsLoading(true);
-     const result = await fetchNotices();
+      setIsLoading(true);
+      const result = await fetchNotices();
 
-     if (result.length !== 0) {
-       setNotices(result);
-     }
-
-     
+      if (result.length !== 0) {
+        setNotices(result);
+      }
     } catch (error) {
       // @ts-ignore
       console.log(error.message);
       toast("Unable to publish!");
-    }finally{
+    } finally {
       setIsLoading(false);
-
     }
 
     setTitle("");
@@ -74,7 +70,7 @@ const Admin = () => {
       if (data.success) {
         toast(data.message);
         // @ts-ignore
-        setNotices(prev =>  prev.filter(notice => notice.noticeId !== id)); 
+        setNotices((prev) => prev.filter((notice) => notice.noticeId !== id));
       }
     } catch (error) {
       // @ts-ignore
@@ -89,14 +85,16 @@ const Admin = () => {
         <div className="mainAdmin">
           <h1>Admin page</h1>
 
-          <form className="formAdmin"
+          <form
+            className="formAdmin"
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
             onSubmit={handleFormsSubmit}
           >
             <h2>Notice form</h2>
             <div className="titleDiv">
               <label htmlFor="titleBox">Title : </label>
-              <input id="titleBox"
+              <input
+                id="titleBox"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
@@ -108,18 +106,20 @@ const Admin = () => {
             </div>
             <div className="textDiv">
               <label htmlFor="textBox">Description : </label>
-            <textarea id="textBox"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              minLength={10}
-              maxLength={3000}
-              required
-              placeholder="Write notice (*max 3000 characters)"
-            />
+              <textarea
+                id="textBox"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                minLength={10}
+                maxLength={3000}
+                required
+                placeholder="Write notice (*max 3000 characters)"
+              />
             </div>
             <div className="authorDiv">
               <label htmlFor="authorBox">Author Name : </label>
-              <input id="authorBox"
+              <input
+                id="authorBox"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 type="text"
@@ -133,7 +133,8 @@ const Admin = () => {
               </button>
               <button
                 style={{ cursor: "pointer" }}
-                type="reset" id="reset"
+                type="reset"
+                id="reset"
                 onClick={() => {
                   setTitle("");
                   setText("");
@@ -142,8 +143,8 @@ const Admin = () => {
               >
                 Reset
               </button>
-          </div>
-        </form>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -151,7 +152,13 @@ const Admin = () => {
         <h1>All notices</h1>
         {isLoading ? (
           <Loading />
-        ) : notices.length === 0 ? <div style={{marginTop : "5rem", fontSize : "xx-large" , padding : "3rem"}}>Notice not published yet!</div> : (
+        ) : notices.length === 0 ? (
+          <div
+            style={{ marginTop: "5rem", fontSize: "xx-large", padding: "3rem" }}
+          >
+            Notice not published yet!
+          </div>
+        ) : (
           <div id="notice_section">
             {
               // @ts-ignore
@@ -161,12 +168,16 @@ const Admin = () => {
                     <p id="title">{value.title}</p>
                     <p id="date">{value.date}</p>
                     <p id="time">{value.time}</p>
-                   </div>
-                  <Link className="read_btn" to={`/notice/${value.noticeId}`}>Read</Link><br />
+                  </div>
+                  <Link className="read_btn" to={`/notice/${value.noticeId}`}>
+                    Read
+                  </Link>
+                  <br />
                   {location.pathname === "/admin" && (
-                    <p className="del_btn"
+                    <p
+                      className="del_btn"
                       style={{ cursor: "pointer" }}
-                      onClick={() => deleteNotice(value.noticeId) }
+                      onClick={() => deleteNotice(value.noticeId)}
                     >
                       Delete
                     </p>

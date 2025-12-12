@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import AppContext from "../context/appContext.mjs";
 import Loading from "../components/Loading.jsx";
 import { Link } from "react-router-dom";
+// @ts-ignore
 import "../styles/home.css";
 const Home = () => {
   // @ts-ignore

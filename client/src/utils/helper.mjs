@@ -1,14 +1,12 @@
 import axios from "axios";
-import { data } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// @ts-ignore
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 export const fetchNotices = async () => {
   try {
     const { data } = await axios.get(`${SERVER_URL}/get-all`);
-
-    console.log(Date.now());
 
     // @ts-ignore
     if (!data.success) {

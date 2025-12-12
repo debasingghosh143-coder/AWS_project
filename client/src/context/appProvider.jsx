@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AppContext from "./appContext.mjs";
-import { fetchNotices, SERVER_URL } from "../utils/helper.mjs";
+import { fetchNotices } from "../utils/helper.mjs";
 
 // @ts-ignore
 const AppProvider = ({ children }) => {
