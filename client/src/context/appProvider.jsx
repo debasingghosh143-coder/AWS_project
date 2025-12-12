@@ -16,7 +16,7 @@ const AppProvider = ({ children }) => {
         setNotices(result);
       }
 
-      setIsLoading(false);
+      // setIsLoading(false);
     };
 
     if (notices.length === 0 && isLoading) getNotices();

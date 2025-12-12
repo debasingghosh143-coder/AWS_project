@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/footer.css"
 const Footer = () => {
     return (
@@ -14,8 +15,8 @@ const Footer = () => {
                 <br />
                 <p><b style={{fontSize:"larger"}}>Quick Links</b></p>
                 <p>
-                    <a href="#">Home</a> • 
-                    <a href="#">Notices</a>  
+                    <Link href="#">Home</Link> • 
+                    <Link href="#">Notices</Link>  
                 </p>
             </div>
             <div className="footerContact">
@@ -27,10 +28,10 @@ const Footer = () => {
                 <br />
                 <p><b style={{fontSize:"larger"}}>Follow Us</b></p>
                 <p>
-                    <a href="#">Instagram</a> • 
-                    <a href="#">Facebook</a> • 
-                    <a href="#">Twitter</a> • 
-                    <a href="#">LinkedIn</a>
+                    <Link to={"https://instagram.com"} target="_blank">Instagram</Link> • 
+                    <Link to={"https://facebook.com"}target="_blank">Facebook</Link> • 
+                    <Link to={"https://x.com"}target="_blank">X(Twitter)</Link> • 
+                    <Link to={"https://linkedin.com"}target="_blank">LinkedIn</Link>
                 </p>
                 <br />
             </div>
