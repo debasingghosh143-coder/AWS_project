@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
       setIsLoading(false);
     };
 
-    if (notices.length === 0) getNotices();
+    if (notices.length === 0 && isLoading) getNotices();
   });
 
   const values = {

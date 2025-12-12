@@ -1,0 +1,46 @@
+.footerMain{
+    position: relative;
+    display: flex;
+    border-radius: 2.5rem;
+    background-color: #f1f0f6;
+    width: 97.5%;
+    height: 20rem;
+    margin: 0 auto;
+    margin-bottom: 2.5rem;
+    box-shadow: 1px 1px 2px;
+    opacity: 0.8;
+    margin-top:5rem ;
+}
+
+.footerClass{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.footerAbout{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: anywhere;
+    width: 50%;
+    padding: 2rem;
+    line-height: 1.7rem;
+}
+
+.footerContact{
+    position: absolute;
+    right: 5rem;
+    line-height: 1.7rem;
+}
+
+p a{
+    padding: 0.2rem;
+    text-decoration: none;
+}
+
+p a:hover{
+    text-decoration: underline;
+}
+

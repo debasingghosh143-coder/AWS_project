@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import AppContext from "../context/appContext.mjs";
 import Loading from "../components/Loading.jsx";
 import PageNotFound from "./PageNotFound.jsx";
-
+import "../styles/notice.css"
 const Notice = () => {
   // @ts-ignore
   const { notices, isLoading } = useContext(AppContext);
@@ -16,13 +16,19 @@ const Notice = () => {
   if (!noticeObj) return <PageNotFound />;
 
   return (
-    <div>
-      <Link to={"/"}>Back to home</Link>
-      <h2>{noticeObj.title}</h2>
-      <p>{noticeObj.text}</p>
-      <p>{noticeObj.date}</p>
-      <p>{noticeObj.time}</p>
-      <p>{noticeObj.atuhor}</p>
+    <div className="noticeMain">
+      <div className="noticeView">
+        <h1 style={{paddingLeft : "1rem"}}>{noticeObj.title}</h1>
+        <p id="N_date">{noticeObj.date}</p>
+        <p id="N_time">{noticeObj.time}</p>
+        <div className="noticeElements">
+          <p id="N_text">{noticeObj.text}</p>
+          <p id="N_author">Author - {noticeObj.author}</p>
+        </div>
+        <div className="backtoHome">
+          <Link id="back" to={"/"}>Back to home</Link>
+        </div>
+      </div>
     </div>
   );
 };

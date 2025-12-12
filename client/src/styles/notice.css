@@ -1,0 +1,77 @@
+body{
+    background-image: url("C:\Users\user\OneDrive\Documents\React S3\client\public\001.jpg");
+    background-size: auto;
+}
+
+.noticeMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4rem;
+    width: 100%;
+    height: auto;
+    min-height: 8rem;
+}
+
+.noticeView{
+    display: flex;
+    flex-direction: column;
+    width: 89%;
+    margin-top: 1.5rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: rgb(254, 236, 251);
+    justify-content: center;
+    border: 1px solid purple;
+}
+
+.noticeElements{
+    border: 1px solid purple;
+    padding: 1rem;
+    margin: 1rem;
+    min-height: 10rem;
+    height: auto;
+    border-radius: 1rem;
+    background-color: white;
+}
+
+#N_date,#N_time{
+    display: flex;
+    justify-content: end;
+    font-size: larger;
+    font-weight: bold
+}
+
+#N_text{
+    font-size: large;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+
+}
+
+#N_text::first-letter{
+    font-size: xx-large;
+    font-weight: bold;
+    padding-left: 1.5rem;
+}
+
+#N_author{
+    display: flex;
+    justify-content: end;
+    font-size: x-large;
+    padding-right: 2rem;
+    font-weight: 700;
+    line-height: 3rem;
+}
+
+#back{
+    justify-content: end;
+    font-size: larger;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.backtoHome{
+    display: flex;
+    justify-content: end;
+}

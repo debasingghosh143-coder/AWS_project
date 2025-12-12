@@ -6,10 +6,11 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Notice from "./pages/Notice";
 import PageNotFound from "./pages/PageNotFound";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <>
+    <div style={{display:"flex", flexDirection:"column"}}>
       <Navbar />
 
       <Routes>
@@ -18,9 +19,9 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/page-not-found" element={<PageNotFound />} />
       </Routes>
-
+      <Footer />
       <ToastContainer position="top-right" autoClose={5000} />
-    </>
+    </div>
   );
 };
 

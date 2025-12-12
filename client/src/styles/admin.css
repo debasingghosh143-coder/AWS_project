@@ -1,0 +1,199 @@
+.main_class{
+    position: static;
+    width: 100%;
+    padding-top: 4rem;
+    overflow-x: hidden;
+    padding-bottom: 4rem;
+}
+
+.main_class h1{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 0.7rem;
+}
+
+#notice_section{
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    padding: 2rem;
+    grid-gap: 1.2rem;
+    overflow-wrap: anywhere;
+    justify-items: center;
+}
+.notice_no {
+    position: relative;
+    display: flex;
+    width: 80%;
+    height: 13rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 4px;
+    border-color: #D0D7DE;
+    opacity: 0.9;
+}
+
+.notice_no:hover{
+    transform: scale(1.02);
+    box-shadow: 4px 4px 8px ;
+    transition: 0.1s ease-in-out;
+    transition-delay: 0.1s;
+    opacity: 1;
+    border: 0.5px solid rgb(168, 100, 168);
+}
+
+.notice_no #title{
+    font-size: x-large;
+}
+
+#date,#time{    
+    position: absolute;
+    padding: 0.5rem;
+    right: 0;
+    bottom: 0;
+}
+
+#date{
+    bottom: 1.5rem;
+}
+
+#read_btn{
+    position: absolute;
+    bottom: 1rem;
+    text-decoration: none;
+    font-size: larger;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border: 1px solid #A0AEC0;
+    border-radius: 0.5rem;
+    background-color: #b18fcf;
+    color: #fff;
+}
+
+#read_btn:hover{
+    box-shadow: 1px 1px 2px;
+    border: 1px solid black;
+}
+
+.del_btn{
+    position: absolute;
+    bottom: 1rem;
+    left: 4.5rem;
+    text-decoration: none;
+    font-size: larger;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border: 1px solid #A0AEC0;
+    border-radius: 0.5rem;
+    background-color: #b18fcf;
+    color: #fff;
+}
+
+.del_btn:hover{
+    box-shadow: 1px 1px 2px;
+    border: 1px solid black;
+}
+
+.middleAdmin{
+    display: flex;
+    justify-content: center;
+
+}
+.mainAdmin{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    width: 92%;
+    border: 1px solid purple;
+    padding: 2rem;
+    line-height: 2.5rem;
+    border-radius: 2rem;
+    background-color: #f1f0f6;
+    opacity: 0.8;
+}
+
+.mainAdmin h1{
+    left: 1rem;
+}
+
+#titleBox{
+    width: 98%;
+    height: 2rem;
+    border: 2px solid purple;
+    font-size: large;
+    padding: 0.3rem;
+}
+
+.titleDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+.titleDiv label{
+    padding-right: 1rem;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+#textBox{
+    display: flex;
+    width: 98%;
+    height: 10rem;
+    font-size: large;
+    padding: 0.5rem;
+    border: 2px solid purple;
+}
+
+.textDiv label{
+    padding-right: 1rem;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+#authorBox{
+    display: flex;
+    width: 98%;
+    height: 2rem;
+    font-size: large;
+    padding: 0.5rem;
+    border: 2px solid purple;
+}
+
+.authorDiv label{
+    padding-right: 1rem;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.btns{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 2rem;
+}
+
+#submit,#reset{
+    margin: 1rem;
+    font-size: larger;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 3px solid purple;
+    font-weight: 600;
+}
+
+#reset:hover{
+    color: white;
+    background-color: purple;
+    opacity: 1;
+}
+
+#submit:hover{
+    color: white;
+    background-color: purple;
+    opacity: 1;
+}

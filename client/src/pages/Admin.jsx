@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { SERVER_URL } from "../utils/helper.mjs";
 import { Link, useLocation } from "react-router-dom";
-
+import "../styles/admin.css"
 const Admin = () => {
   // @ts-ignore
-  const { notices, isLoading } = useContext(AppContext);
+  const { notices, isLoading, setNotices } = useContext(AppContext);
   const location = useLocation();
 
   const [title, setTitle] = useState("");
@@ -59,6 +59,7 @@ const Admin = () => {
 
       if (data.success) {
         toast(data.message);
+        setNotices(prev =>  prev.filter(notice => notice.noticeId !== id)); 
       }
     } catch (error) {
       // @ts-ignore
@@ -68,79 +69,92 @@ const Admin = () => {
   };
 
   return (
-    <div>
-      <h1>Admin page</h1>
+    <div className="topAdmin">
+      <div className="middleAdmin">
+        <div className="mainAdmin">
+          <h1>Admin page</h1>
 
-      <form
-        style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-        onSubmit={handleFormsSubmit}
-      >
-        <h2>Notice form</h2>
+          <form className="formAdmin"
+            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+            onSubmit={handleFormsSubmit}
+          >
+            <h2>Notice form</h2>
+            <div className="titleDiv">
+              <label htmlFor="titleBox">Title : </label>
+              <input id="titleBox"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                type="text"
+                minLength={5}
+                maxLength={100}
+                required
+                placeholder="Enter title (*max 100 characters)"
+              />
+            </div>
+            <div className="textDiv">
+              <label htmlFor="textBox">Description : </label>
+            <textarea id="textBox"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              minLength={10}
+              maxLength={3000}
+              required
+              placeholder="Write notice (*max 3000 characters)"
+            />
+            </div>
+            <div className="authorDiv">
+              <label htmlFor="authorBox">Author Name : </label>
+              <input id="authorBox"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                type="text"
+                maxLength={100}
+                placeholder="Author name (*max 100 characters)"
+              />
+            </div>
+            <div className="btns">
+              <button style={{ cursor: "pointer" }} type="submit" id="submit">
+                Publish
+              </button>
+              <button
+                style={{ cursor: "pointer" }}
+                type="reset" id="reset"
+                onClick={() => {
+                  setTitle("");
+                  setText("");
+                  setAuthor("");
+                }}
+              >
+                Reset
+              </button>
+          </div>
+        </form>
+        </div>
+      </div>
 
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          type="text"
-          minLength={5}
-          maxLength={100}
-          required
-          placeholder="Enter title"
-        />
-
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          minLength={10}
-          maxLength={3000}
-          required
-          placeholder="Write notice"
-        />
-
-        <input
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          type="text"
-          maxLength={100}
-          placeholder="Author name"
-        />
-
-        <button style={{ cursor: "pointer" }} type="submit">
-          Publish
-        </button>
-        <button
-          style={{ cursor: "pointer" }}
-          type="reset"
-          onClick={() => {
-            setTitle("");
-            setText("");
-            setAuthor("");
-          }}
-        >
-          Reset
-        </button>
-      </form>
-
-      <div>
-        <h2>All notices</h2>
+      <div className="main_class">
+        <h1>All notices</h1>
         {isLoading ? (
           <Loading />
-        ) : (
-          <div>
+        ) : notices.length === 0 ? <div style={{marginTop : "5rem", fontSize : "xx-large" , padding : "3rem"}}>Notice not published yet!</div> : (
+          <div id="notice_section">
             {
               // @ts-ignore
               notices.map((value, index) => (
-                <div key={index}>
-                  <p>{value.title}</p>
-                  <p>{value.date}</p>
-                  <p>{value.time}</p>
-                  <Link to={`/notice/${value.noticeId}`}>read</Link>
+                <div className="notice_no" key={index}>
+                  <div className="notice_details">
+                    <p id="title">{value.title}</p>
+                    <p id="date">{value.date}</p>
+                    <p id="time">{value.time}</p>
+                   </div>
+                  <Link className="read_btn" to={`/notice/${value.noticeId}`}>Read</Link><br />
                   {location.pathname === "/admin" && (
-                    <p
+                    <Link className="del_btn"
                       style={{ cursor: "pointer" }}
-                      onClick={() => deleteNotice(value.noticeId)}
+                      onClick={() => deleteNotice(value.noticeId) }
                     >
-                      delete
-                    </p>
+                      Delete
+                    </Link>
                   )}
                 </div>
               ))
