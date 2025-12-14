@@ -28,11 +28,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Set environment variables
+      - name: Create production env file
         run: |
-          echo "VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}" >> $GITHUB_ENV
-          echo "VITE_CLERK_PUBLISHABLE_KEY=${{secrets.CLERK_PUBLISHABLE_KEY}}" >> $GITHUB_ENV
-          echo "VITE_ADMINS=${{secrets.VITE_ADMINS}}" >> $GITHUB_ENV
+          echo "VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}" > .env.production
+          echo "VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.production
+          echo "VITE_ADMINS=${{ secrets.VITE_ADMINS }}" >> .env.production
 
       - name: Build project
         run: npm run build
@@ -44,6 +44,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_CLIENT_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_CLIENT_REGION }}
 
-      - name: Sync to S3
+      - name: Deploy to S3
         run: |
           aws s3 sync dist s3://aws-react-s3-bucket/ --delete
