@@ -11,7 +11,7 @@
 }
 
 #notice{
-    font-size: xx-large;
+    font-size: 35px;
     position: absolute;
     left: 4rem;
     text-decoration: none;
@@ -20,11 +20,11 @@
 
 #home,#admin{
     position: absolute;
-    right: 16rem;
+    right: 20rem;
     text-decoration: none;
-    font-size: larger;
+    font-size: x-large;
 }
 
 #admin{
-    right: 6rem;
+    right: 10rem;
 }

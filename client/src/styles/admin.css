@@ -92,6 +92,7 @@
     border-radius: 0.5rem;
     background-color: #b18fcf;
     color: #fff;
+    margin-left: 1rem;
 }
 
 .del_btn:hover{
@@ -174,7 +175,7 @@
     display: flex;
     align-items: center;
     justify-content: end;
-    padding: 2rem;
+    padding: 0.5rem;
 }
 
 #submit,#reset{

@@ -6,12 +6,19 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App.jsx";
 import AppProvider from "./context/appProvider.jsx";
+import { ClerkProvider } from '@clerk/clerk-react'
 
-// @ts-ignore
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+if (!PUBLISHABLE_KEY) {
+    throw new Error('Add your Clerk Publishable Key to the .env file')
+  }
 createRoot(document.getElementById("root")).render(
+ <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
   <BrowserRouter>
     <AppProvider>
       <App />
     </AppProvider>
   </BrowserRouter>
+</ClerkProvider>
+
 );

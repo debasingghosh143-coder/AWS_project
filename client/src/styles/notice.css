@@ -26,6 +26,7 @@ body{
 }
 
 .noticeElements{
+    position: relative;
     border: 1px solid purple;
     padding: 1rem;
     margin: 1rem;
@@ -46,22 +47,25 @@ body{
     font-size: large;
     line-height: 1.5rem;
     padding: 0.5rem;
-
+    overflow-wrap: anywhere;
 }
 
 #N_text::first-letter{
     font-size: xx-large;
     font-weight: bold;
     padding-left: 1.5rem;
+    padding-right:0.1rem ;
 }
 
 #N_author{
+    position: absolute;
     display: flex;
     justify-content: end;
     font-size: x-large;
     padding-right: 2rem;
     font-weight: 700;
-    line-height: 3rem;
+    bottom: 0.5rem;
+    right: 1rem;
 }
 
 #back{
