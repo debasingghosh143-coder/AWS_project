@@ -29,6 +29,7 @@ body{
     position: relative;
     border: 1px solid purple;
     padding: 1rem;
+    padding-bottom: 3rem;
     margin: 1rem;
     min-height: 10rem;
     height: auto;

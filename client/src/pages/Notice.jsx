@@ -18,12 +18,12 @@ const Notice = () => {
   return (
     <div className="noticeMain">
       <div className="noticeView">
-        <h1 style={{paddingLeft : "1rem"}}>{noticeObj.title}</h1>
+        <h1 style={{paddingLeft : "1rem" , overflowWrap:"anywhere"}}>{noticeObj.title}</h1>
         <p id="N_date">{noticeObj.date}</p>
         <p id="N_time">{noticeObj.time}</p>
         <div className="noticeElements">
           <p id="N_text">{noticeObj.text}</p>
-          <p id="N_author" >Author - {noticeObj.author}</p>
+          <p id="N_author" >{noticeObj.author}</p>
         </div>
         <div className="backtoHome">
           <Link id="back" to={"/"}>Back to home</Link>
