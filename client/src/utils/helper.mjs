@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 // @ts-ignore
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+export const ADMINS = import.meta.env.VITE_ADMINS;
 
 export const fetchNotices = async () => {
   try {

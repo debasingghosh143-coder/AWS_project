@@ -7,6 +7,8 @@ import Admin from "./pages/Admin";
 import Notice from "./pages/Notice";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from "./components/Footer";
+import AuthRoute from './components/AuthRoute'
+
 
 const App = () => {
   return (
@@ -16,7 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/notice/:id" element={<Notice />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={ <AuthRoute> <Admin/> </AuthRoute> } />
         <Route path="/page-not-found" element={<PageNotFound />} />
       </Routes>
       <Footer />

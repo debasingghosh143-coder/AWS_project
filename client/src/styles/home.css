@@ -48,7 +48,7 @@ body{
     border: 0.5px solid rgb(168, 100, 168);
 }
 
-.notice_no #title{
+.notice_details #title{
     font-size: x-large;
 }
 

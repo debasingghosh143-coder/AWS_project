@@ -3,8 +3,9 @@ import AppContext from "../context/appContext.mjs";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { fetchNotices, SERVER_URL } from "../utils/helper.mjs";
-import { Link, useLocation } from "react-router-dom";
+import { fetchNotices, SERVER_URL, ADMINS } from "../utils/helper.mjs";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 // @ts-ignore
 import "../styles/admin.css";
 const Admin = () => {
@@ -12,10 +13,22 @@ const Admin = () => {
   const { notices, isLoading, setNotices, setIsLoading } =
     useContext(AppContext);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isLoaded } = useUser(); 
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
+
+  if (!isLoaded) <Loading/>;
+
+  
+const isAdmin = ADMINS.includes(user.id);
+
+if (!isAdmin) {
+  toast("Only admins can access this page!");
+  navigate('/');
+}
 
   // @ts-ignore
   const handleFormsSubmit = async (e) => {

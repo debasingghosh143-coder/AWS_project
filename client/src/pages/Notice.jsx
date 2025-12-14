@@ -23,7 +23,7 @@ const Notice = () => {
         <p id="N_time">{noticeObj.time}</p>
         <div className="noticeElements">
           <p id="N_text">{noticeObj.text}</p>
-          <p id="N_author">Author - {noticeObj.author}</p>
+          <p id="N_author" >Author - {noticeObj.author}</p>
         </div>
         <div className="backtoHome">
           <Link id="back" to={"/"}>Back to home</Link>

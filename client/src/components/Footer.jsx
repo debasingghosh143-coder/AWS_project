@@ -21,7 +21,7 @@ const Footer = () => {
             <b style={{ fontSize: "larger" }}>Quick Links</b>
           </p>
           <p>
-            <Link to="#">Home</Link> •<Link to="#">Notices</Link>
+            <Link to="/">Home</Link> •<Link to="/">Notices</Link>
           </p>
         </div>
         <div className="footerContact">
@@ -30,7 +30,7 @@ const Footer = () => {
             <b style={{ fontSize: "larger" }}>Contact</b>
           </p>
           <p>Email: demo@example.com</p>
-          <p>Phone: +91 demo number</p>
+          <p>Phone: +91 99999 99999</p>
           <p>Address: Kolkata, West Bengal, India</p>
           <br />
           <p>
