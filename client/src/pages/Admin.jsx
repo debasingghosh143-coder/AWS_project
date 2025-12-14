@@ -1,34 +1,42 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/appContext.mjs";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { fetchNotices, SERVER_URL, ADMINS } from "../utils/helper.mjs";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react";
+import { Link, useLocation } from "react-router-dom";
+import { useUser, useClerk } from "@clerk/clerk-react";
 // @ts-ignore
 import "../styles/admin.css";
 const Admin = () => {
+  const { signOut } = useClerk();
+  const { user, isLoaded } = useUser();
+
+  const handleLogout = async () => {
+    await signOut({ redirectUrl: "/" });
+  };
+
   // @ts-ignore
   const { notices, isLoading, setNotices, setIsLoading } =
     useContext(AppContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { user, isLoaded } = useUser(); 
 
+  const location = useLocation();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
 
-  if (!isLoaded) <Loading/>;
+useEffect(() => {
+  if (!isLoaded || !user) return;
 
-  
-const isAdmin = ADMINS.includes(user.id);
+  const isAdmin = ADMINS.includes(user.id);
 
-if (!isAdmin) {
-  toast("Only admins can access this page!");
-  navigate('/');
-}
+  if (!isAdmin) {
+    toast("Only admins can access this page!");
+    handleLogout();
+  }
+}, [isLoaded, user]);
+
+if (!isLoaded) return <Loading />;
 
   // @ts-ignore
   const handleFormsSubmit = async (e) => {
